@@ -1,0 +1,688 @@
+#include<conio.h>
+#include<windows.h>
+#include <iostream>
+#include <string.h>
+#include<stdlib.h>
+#include <stdlib.h>
+
+
+using namespace std;
+
+struct donateDate
+{
+    string date;
+    string month;
+    string year;
+};
+
+class Donor
+{
+
+    int donorId;
+    int donateCount = 1;
+    string donorName;
+    donateDate dD;
+    string bloodGrp;
+    string donorLoc;
+    string bloodReq;
+    donateDate donationHistory[100];
+
+public:
+    void setDonorId(int id)
+    {
+        donorId = id;
+    }
+    void setDonorName(string name)
+    {
+        donorName = name;
+    }
+    void setBloodGrp(string bg)
+    {
+        bloodGrp = bg;
+    }
+    void setDonorLoc(string dl)
+    {
+        donorLoc = dl;
+    }
+    void setBloodReq(string br)
+    {
+        bloodReq = br;
+    }
+    void setDate(string date, string month, string year)
+    {
+        dD.date = date;
+        dD.month = month;
+        dD.year = year;
+        donationHistory [0]= dD;
+    }
+
+    string getBloodGrp()
+    {
+        return bloodGrp;
+    }
+    int getDonorId()
+    {
+        return donorId;
+    }
+    string getDonorName()
+    {
+        return donorName;
+    }
+    string getDonorLoc()
+    {
+        return donorLoc;
+    }
+    string getBloodReq()
+    {
+        return bloodReq;
+    }
+
+    void getDonationHistory()
+    {
+        if(donateCount < 1)
+        {
+            system("CLS");
+            for(int i=0; i<11; i++)
+            {
+                cout<<" "<<endl;
+            }
+
+            cout<<"\t\t\t\t\t  ";
+            char c[30]= {'L','o','a','d','i','n','g','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'};
+
+            for(int i=1; i<30; i++)
+            {
+
+                cout<<c[i-1];
+                Sleep(i*7);
+            }
+            system("cls");
+            for(int i=0; i<10; i++)
+            {
+                cout<<" "<<endl;
+            }
+            cout << "\t\t\t\t\t  No History Available" << endl;
+            cout << endl;
+            cout<<" "<<endl;
+            cout<<" "<<endl;
+
+            cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+
+        }
+        else
+        {
+            system("cls");
+            for(int i=0; i<11; i++)
+            {
+                cout<<" "<<endl;
+            }
+
+            cout<<"\t\t\t\t\t  ";
+            char c[30]= {'L','o','a','d','i','n','g','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'};
+
+            for(int i=1; i<30; i++)
+            {
+
+                cout<<c[i-1];
+                Sleep(i*7);
+            }
+            system("CLS");
+
+
+            for(int i = 0; i<donateCount; i++)
+            {
+                for(int i=0; i<6; i++)
+            {
+                cout<<" "<<endl;
+            }
+
+            cout<<"\t\t\t\t\t  ";
+                cout << "Donation Date: " << donationHistory[i].date << endl;
+                cout<<"\t\t\t\t\t  ";
+                cout << "Donation Month: " << donationHistory[i].month << endl;
+                cout<<"\t\t\t\t\t  ";
+                cout << "Donation Year: " << donationHistory[i].year << endl;
+
+            }
+            cout<<" "<<endl;
+        cout<<" "<<endl;
+        cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+        }
+    }
+};
+
+Donor registerDonor(Donor donor);
+bool isDonorEmpty(int donorNum);
+
+int main()
+{
+
+    int donorNum = 0;
+    Donor donor[100];
+
+
+    int choice = 0;
+    do
+    {
+        system("CLS");
+        for(int i=0; i<6; i++)
+        {
+            cout<<" "<<endl;
+        }
+
+        cout << "\t\t\t\t\t............................... " << endl;
+        cout << "\t\t\t\t\t* BLOOD BANK MANAGEMENT SYSTEM *" << endl;
+        cout << "\t\t\t\t\t..............................." << endl << endl;
+        cout << "\t\t\t\t\t1. Register" << endl;
+        cout << "\t\t\t\t\t2. Blood Group" << endl;
+        cout << "\t\t\t\t\t3. Donor List" << endl;
+        cout << "\t\t\t\t\t4. Donor's Location" << endl;
+        cout << "\t\t\t\t\t5. Blood Donation History" << endl;
+        cout << "\t\t\t\t\t6. Request for blood donation" << endl;
+        cout << "\t\t\t\t\t7. Blood Issued" << endl;
+        system("Color F1");
+        cout << "\t\t\t\t\t8. Exit" << endl;
+        cout << "\t\t\t\t\tInput choice: ";
+        cin >> choice;
+        system("CLS");
+
+
+        for(int i=0; i<11; i++)
+        {
+            cout<<" "<<endl;
+        }
+        cout<<"\t\t\t\t\t  ";
+        char c[30]= {'L','o','a','d','i','n','g','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'};
+
+        for(int i=1; i<30; i++)
+        {
+
+            cout<<c[i-1];
+            Sleep(i*7);
+        }
+        system("cls");
+
+
+        switch(choice)
+        {
+        case 1:
+
+
+            cin.ignore();
+            cin.clear();
+            donor[donorNum] = registerDonor(donor[donorNum]);
+            donorNum++;
+            break;
+        case 2:
+        {
+
+            cin.ignore();
+            cin.clear();
+
+            for(int i=0; i<4; i++)
+            {
+                cout<<" "<<endl;
+            }
+            cout <<"\t\t\t\tSearch for blood groups..." << endl;
+            string s;
+            if(isDonorEmpty(donorNum))
+            {
+                break;
+            }
+            else
+            {
+
+                int count = 0;
+                bool found = false;
+                cout <<endl<<endl<<"\t\t\t\tEnter Blood Group: ";
+                cin >> s;
+                system("CLS");
+
+
+                //system("cls");
+                for(int i = 0; i<donorNum; i++)
+                {
+                    if(donor[i].getBloodGrp() == s)
+                    {
+                        found = true;
+                        count++;
+                        if(count == 1)
+                        {
+                            cout<<" "<<endl;
+                            cout<<" "<<endl;
+                            cout <<endl<<endl<<endl<<endl<<endl<< "\t\t\t\t\t Found,Blood Matched!" << endl;
+                        }
+                        cout << endl <<  "\t\t\t\t\t Donor's ID: " << donor[i].getDonorId() << endl;
+
+
+
+                    }
+
+                }
+                cout<<" "<<endl;
+                        cout<<" "<<endl;
+
+                        cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+
+                cin.ignore();
+                cin.clear();
+                if(!found)
+                {
+                    system("cls");
+
+                    for(int i=0; i<6; i++)
+                    {
+                        cout<<" "<<endl;
+                    }
+                    cout << "\t\t\t\tSORRY, No donor of this Blood Group found!" << endl;
+                    cout<<" "<<endl;
+                    cout<<" "<<endl;
+                    cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+
+
+
+                    getline(cin,s);
+
+                    break;
+                }
+            }
+
+            getline(cin,s);
+            break;
+
+        }
+        case 3:
+        {
+
+            string s;
+            cin.ignore();
+            cin.clear();
+            if(isDonorEmpty(donorNum))
+            {
+                getline(cin, s);
+                break;
+            }
+            else
+            {
+                system("CLS");
+                system("CLS");
+                for(int i=0; i<10; i++)
+                {
+                    cout<<" "<<endl;
+                }
+                cout<<"\t\t\t\t\t  ";
+                cout << "Donor List" << endl;
+                for(int i = 0; i<donorNum; i++)
+                {
+                    cout<<"\t\t\t\t\t  ";
+                    cout << "Donor ID: " <<endl;
+                    cout<<"\t\t\t\t\t\t  ";
+                    cout<<i+1 << ". " << donor[i].getDonorId() << endl;
+
+                }
+                cout<<" "<<endl;
+                cout<<" "<<endl;
+                cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+
+                getline(cin, s);
+
+            }
+        }
+        break;
+        case 4:
+        {
+            string s;
+            string loc;
+            bool found = false;
+            system("CLS");
+            for(int i=0; i<10; i++)
+            {
+                cout<<" "<<endl;
+            }
+            cout << "\t\t\t\t\t\tEnter Location to find donar: ";
+            cin >> loc;
+
+            cin.ignore();
+            cin.clear();
+
+            if(isDonorEmpty(donorNum))
+            {
+                getline(cin, s);
+                break;
+            }
+            else
+            {
+                for(int i = 0; i<donorNum; i++)
+                {
+                    if(donor[i].getDonorLoc() == loc)
+                    {
+                        found = true;
+                        // system("CLS");
+
+
+                        for(int i=0; i<4; i++)
+                        {
+
+                            cout<<" "<<endl;
+                        }
+                        cout << "\t\t\t\t\t\t";
+                        cout << "Donor ID: " << donor[i].getDonorId() << endl;
+
+                    }
+
+                }
+                cout<<" "<<endl;
+                cout<<" "<<endl;
+                cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+                if(!found)
+                {
+                    system("CLS");
+                    for(int i=0; i<10; i++)
+                    {
+                        cout<<" "<<endl;
+                    }
+                    cout<<"\t\t\t\t\t  ";
+                    char c[30]= {'L','o','a','d','i','n','g','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'};
+                    for(int i=1; i<30; i++)
+                    {
+
+                        cout<<c[i-1];
+                        Sleep(i*7);
+                    }
+                    system("CLS");
+                    for(int i=0; i<6; i++)
+                    {
+                        cout<<" "<<endl;
+                    }
+                    cout << "\t\t\t\t   No Donor Found in your Location" << endl;
+                    cout<<" "<<endl;
+                    cout<<" "<<endl;
+                    cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+                    getline(cin, s);
+                    break;
+                }
+            }
+            getline(cin, s);
+            break;
+        }
+        case 5:
+        {
+            string s;
+            int idd;
+            system("CLS");
+            if(isDonorEmpty(donorNum))
+            {
+                getline(cin, s);
+                break;
+            }
+            else
+            {
+                system("CLS");
+
+                for(int i=0; i<6; i++)
+                {
+                    cout<<" "<<endl;
+                }
+                cout<<"\t\t\t\t\t  ";
+                cout << "Enter donor Id: ";
+                cin >> idd;
+                cin.ignore();
+                cin.clear();
+                for(int i = 0; i < donorNum; i++)
+                {
+                    if(donor[i].getDonorId() == idd)
+                    {
+                        donor[i].getDonationHistory();
+                        getline(cin, s);
+                        break;
+                    }
+                }
+            }
+            break;
+        }
+        case 6:
+        {
+            string s;
+            int id;
+            string grp;
+            system("CLS");
+
+
+            for(int i=0; i<10; i++)
+            string s;
+            {
+                cout<<" "<<endl;
+            }
+            cout<<"\t\t\t\t\t  ";
+            cout << "Enter Donor ID: ";
+            cin >> id;
+
+            cin.ignore();
+            cin.clear();
+
+            for(int i = 0; i < donorNum; i++)
+            {
+                if(donor[i].getDonorId() == id)
+                {
+                    system("CLS");
+                    for(int i=0; i<10; i++)
+                    {
+                        cout<<" "<<endl;
+                    }
+                    cout<<"\t\t\t\t\t  ";
+                    char c[30]= {'L','o','a','d','i','n','g','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'};
+
+                    for(int i=1; i<30; i++)
+                    {
+
+                        cout<<c[i-1];
+                        Sleep(i*7);
+                    }
+                    system("CLS");
+                    for(int i=0; i<6; i++)
+                    {
+                        cout<<" "<<endl;
+                    }
+                    cout << "\t\t\t\t\tEnter required blood group: ";
+
+                    getline(cin, grp);
+                    donor[i].setBloodReq(grp);
+                    system("CLS");
+                for(int i=0; i<10; i++)
+                {
+                    cout<<" "<<endl;
+                }
+                cout<<"\t\t\t\t\t  ";
+                //char c[30]= {'L','o','a','d','i','n','g','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'};
+
+                for(int i=1; i<30; i++)
+                {
+
+                    cout<<c[i-1];
+                    Sleep(i*7);
+                }
+                system("CLS");
+                for(int i=0; i<6; i++)
+                {
+                    cout<<" "<<endl;
+                }
+
+                    cout << "\t\t\t\t  You have successfully requested for blood donation" << endl;
+                    cout << endl;
+                cout<<" "<<endl;
+                cout<<" "<<endl;
+                cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+                    getline(cin, s);
+                }
+            }
+
+            break;
+        }
+        case 7:
+        {
+            string s;
+            int id;
+            bool found = false;;
+            system("CLS");
+
+
+            for(int i=0; i<10; i++)
+            {
+                cout<<" "<<endl;
+            }
+            cout<<"\t\t\t\t\t  ";
+            cout << " Enter Donor ID: ";
+            cin >> id;
+
+            cin.ignore();
+            cin.clear();
+
+            for(int i = 0; i<donorNum; i++)
+            {
+                if(donor[i].getDonorId() == id)
+                {
+                    found = true;
+                }
+            }
+            if(found)
+            {
+                system("CLS");
+                for(int i=0; i<10; i++)
+                {
+                    cout<<" "<<endl;
+                }
+                cout<<"\t\t\t\t\t  ";
+                char c[30]= {'L','o','a','d','i','n','g','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'};
+
+                for(int i=1; i<30; i++)
+                {
+
+                    cout<<c[i-1];
+                    Sleep(i*7);
+                }
+                system("CLS");
+                for(int i=0; i<10; i++)
+                {
+                    cout<<" "<<endl;
+                }
+                cout << "\t\t\t\t\t Available Requests..." << endl;
+                for(int i = 0; i < donorNum; i++)
+                {
+                    if(donor[i].getBloodReq().length() > 0)
+                    {
+                        cout <<"\t\t\t\t\t\t "<< i+1 << ". " << donor[i].getBloodReq() << endl;
+                    }
+                }
+                cout << endl;
+                cout<<" "<<endl;
+                cout<<" "<<endl;
+                cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+            }
+            else
+            {
+                system("CLS");
+                for(int i=0; i<10; i++)
+                {
+                    cout<<" "<<endl;
+                }
+                cout<<"\t\t\t\t\t  ";
+                char c[30]= {'L','o','a','d','i','n','g','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'};
+
+                for(int i=1; i<30; i++)
+                {
+
+                    cout<<c[i-1];
+                    Sleep(i*7);
+                }
+                for(int i=0; i<10; i++)
+                {
+                    cout<<" "<<endl;
+                }
+                cout << "\t\t\t\t   ID not found" << endl;
+                cout<<" "<<endl;
+                cout<<" "<<endl;
+                cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+
+
+                getline(cin, s);
+                break;
+            }
+            getline(cin, s);
+            break;
+        }
+        default:
+            choice = 0;
+            break;
+        }
+
+    }
+    while(choice > 0 || choice < 8);
+
+    return 0;
+}
+
+bool isDonorEmpty(int donorNum)
+{
+    if(donorNum < 1)
+    {
+        cout << "\t\t\t\t\t  Sorry!"<<endl<<" \t\t\t\t   No Donor Available" << endl;
+        cout<<" "<<endl;
+        cout<<" "<<endl;
+        cout << endl << "\t\t\t\t   Click  Enter  to  return  Homepage. " << endl;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+Donor registerDonor(Donor donor)
+{
+    int i;
+    string str;
+    system("CLS");
+    {
+
+
+
+        for(int i=0; i<6; i++)
+        {
+            cout<<" "<<endl;
+        }
+
+    }
+    cout << "\t\t\t\t\tEnter donor ID: ";
+    cin >> i;
+    donor.setDonorId(i);
+    cin.ignore();
+    cin.clear();
+    cout << "\t\t\t\t\tEnter donor Name: ";
+    getline(cin,str);
+    donor.setDonorName(str);
+    cout << "\t\t\t\t\tEnter Donor Blood group: ";
+    getline(cin,str);
+    donor.setBloodGrp(str);
+    cout << "\t\t\t\t\tEnter Donor Location: ";
+    getline(cin,str);
+    donor.setDonorLoc(str);
+    string a, b;
+    cout << "\t\t\t\t\tEnter Donor History --> " << endl;
+    cout << "\t\t\t\t\tEnter Date, Month, Year: ";
+    cin >> a >> str >> b ;
+
+
+    donor.setDate(a,str,b);
+    system("CLS");
+    for(int i=0; i<10; i++)
+    {
+        cout<<" "<<endl;
+    }
+    cout << endl << "\t\t\t\t\t    Congratulations, "<<donor.getDonorName()<<"!"<<endl;
+
+    cout<<endl <<"\t\t\t\t\t  You have Successfully Registered! " << endl;
+    cout <<  "\t\t\t\t\t  Click  Enter  to  return  Homepage. " << endl;
+    getline(cin,str);
+    getline(cin,str);
+    return donor;
+}
