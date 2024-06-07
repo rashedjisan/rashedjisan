@@ -1,5 +1,5 @@
 ## Who am I?
-I've completed my graduation from Bangladesh University of Business and Technology (BUBT), pursuing my bachelor's degree in computer engineering. My passion for technology, innovation, and ML & Deep Learning drives me.  I thrive on challenges and am highly motivated and results-oriented. I'm also an open-source contributor, a web development enthusiast, and confident in my ability to excel in any role.
+I graduated from Bangladesh University of Business and Technology (BUBT), pursuing my bachelor's degree in computer engineering. My passion for technology, innovation, and ML & Deep Learning drives me.  I thrive on challenges and am highly motivated and results-oriented. I'm also an open-source contributor, a web development enthusiast, data scientist, and I am confident in my ability to excel in any role.
 
 
 ## Visitor Count
